@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 83f822fe23ef1b24f96380e63455556f
+guid: 9181e753b07be8e4a984569e739a1a64
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4918487395459217855
-    second: IMG_3937_0
+      213: 2020165742616241834
+    second: IMG_1082_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1984
+  spritePixelsToUnits: 512
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_3937_0
+      name: IMG_1082_0
       rect:
         serializedVersion: 2
-        x: 247
-        y: 123
-        width: 1428
-        height: 1676
-      alignment: 9
-      pivot: {x: 0.53153855, y: 0.087023735}
+        x: 15
+        y: 127
+        width: 482
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fb935961a3af14440800000000000000
-      internalID: 4918487395459217855
+      spriteID: aa6ed042a02190c10800000000000000
+      internalID: 2020165742616241834
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: bdb680e68bcbe93499fbee92b3dd988a
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      IMG_3937_0: 4918487395459217855
+      IMG_1082_0: 2020165742616241834
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
