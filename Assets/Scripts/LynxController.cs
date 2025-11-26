@@ -7,18 +7,20 @@ public class LynxController : MonoBehaviour
     public Tilemap tilemap;
     public Pathfinder pathfinder;
     public float moveSpeed = 3f;
-    public int maxCells = 5; // Maximum number of cells the Lynx can travel
+    public int maxCells = 7; // Maximum number of cells the Lynx can travel
     public Tilemap highlightTilemap; // Tilemap for highlighting reachable tiles
     public TileBase highlightTile; // Tile to use for highlighting
+    public TurnManager turnManager;
 
     private List<Vector3Int> path;
     private int currentTileIndex = 0;
     private Vector3Int previousCell;
     private bool isMoving = false;
+    private bool canMove = false;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (canMove && Input.GetMouseButtonDown(0))
         {
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPos.z = 0;
@@ -31,6 +33,7 @@ public class LynxController : MonoBehaviour
             {
                 currentTileIndex = 0;
                 isMoving = true;
+                canMove = false;
                 Debug.Log("Path calculated: " + path.Count + " steps");
             }
             else
@@ -56,12 +59,20 @@ public class LynxController : MonoBehaviour
         {
             isMoving = false;
             HighlightReachableTiles();
+            turnManager.EndLynxTurn();
         }
     }
 
-    void Start()
+    void Awake()
     {
         previousCell = tilemap.WorldToCell(transform.position);
+        if (turnManager != null)
+            turnManager.RegisterLynx(this);
+    }
+
+    public void StartTurn()
+    {
+        canMove = true;
         HighlightReachableTiles();
     }
 
