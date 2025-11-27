@@ -26218,7 +26218,7 @@ GameObject:
   - component: {fileID: 1327493256}
   - component: {fileID: 1327493257}
   m_Layer: 0
-  m_Name: TurnManager
+  m_Name: TurnManagerInstance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
