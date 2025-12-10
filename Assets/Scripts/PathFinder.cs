@@ -8,8 +8,8 @@ public class Pathfinder : MonoBehaviour
     public List<Vector3Int> FindPath(Vector3Int startCell, Vector3Int targetCell)
     {
         Debug.Log("Starting A* pathfinding from " + startCell + " to " + targetCell);
-        Node startNode = new Node(startCell, tilemap.HasTile(startCell));
-        Node targetNode = new Node(targetCell, tilemap.HasTile(targetCell));
+        Node startNode = new Node(startCell, IsWalkable(startCell));
+        Node targetNode = new Node(targetCell, IsWalkable(targetCell));
 
         startNode.gCost = 0;
         startNode.hCost = Mathf.Abs(startCell.x - targetCell.x) + Mathf.Abs(startCell.y - targetCell.y);
@@ -110,11 +110,17 @@ public class Pathfinder : MonoBehaviour
             Vector3Int neighborPos = node.cellPosition + dir;
             if (!allNodes.ContainsKey(neighborPos))
             {
-                bool walkable = tilemap.HasTile(neighborPos);
+                bool walkable = IsWalkable(neighborPos);
                 allNodes[neighborPos] = new Node(neighborPos, walkable);
             }
             neighbors.Add(allNodes[neighborPos]);
         }
         return neighbors;
+    }   
+
+    public bool IsWalkable(Vector3Int cell)
+    {
+        TileBase tile = tilemap.GetTile(cell);
+        return tile != null && tile.name.Contains("Earth");
     }
 }

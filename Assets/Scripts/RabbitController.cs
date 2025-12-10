@@ -12,6 +12,7 @@ public class RabbitController : MonoBehaviour
     public Transform lynxTransform; // Reference to Lynx transform
     public Tilemap highlightTilemap; // Tilemap for highlighting roam zone
     public TileBase highlightTile; // Tile to use for highlighting
+    public bool canHighlight = false;
 
     private List<Vector3Int> path;
     private int currentTileIndex = 0;
@@ -130,7 +131,7 @@ public class RabbitController : MonoBehaviour
 
         if (reachableCells.Count > 0)
         {
-            Vector3Int bestCell = startCell;
+            List<Vector3Int> candidates = new List<Vector3Int>();
             int maxDistance = 0;
 
             foreach (Vector3Int cell in reachableCells)
@@ -139,9 +140,16 @@ public class RabbitController : MonoBehaviour
                 if (distance > maxDistance)
                 {
                     maxDistance = distance;
-                    bestCell = cell;
+                    candidates.Clear();
+                    candidates.Add(cell);
+                }
+                else if (distance == maxDistance)
+                {
+                    candidates.Add(cell);
                 }
             }
+
+            Vector3Int bestCell = candidates[Random.Range(0, candidates.Count)];
 
             path = pathfinder.FindPath(startCell, bestCell);
             if (path != null)
@@ -190,7 +198,7 @@ public class RabbitController : MonoBehaviour
                 foreach (Vector3Int dir in directions)
                 {
                     Vector3Int neighbor = cell + dir;
-                    if (!visited.Contains(neighbor) && tilemap.HasTile(neighbor))
+                    if (!visited.Contains(neighbor) && pathfinder.IsWalkable(neighbor))
                     {
                         visited.Add(neighbor);
                         distance[neighbor] = dist + 1;
@@ -205,6 +213,8 @@ public class RabbitController : MonoBehaviour
 
     void OnMouseEnter()
     {
+        if (!canHighlight) return;
+
         // Save current highlights
         previousTiles.Clear();
         BoundsInt bounds = highlightTilemap.cellBounds;
@@ -260,7 +270,7 @@ public class RabbitController : MonoBehaviour
                 foreach (Vector3Int dir in directions)
                 {
                     Vector3Int neighbor = cell + dir;
-                    if (!visited.Contains(neighbor) && tilemap.HasTile(neighbor))
+                    if (!visited.Contains(neighbor) && pathfinder.IsWalkable(neighbor))
                     {
                         visited.Add(neighbor);
                         distance[neighbor] = dist + 1;

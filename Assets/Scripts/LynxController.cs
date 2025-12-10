@@ -103,7 +103,7 @@ public class LynxController : MonoBehaviour
                 foreach (Vector3Int dir in directions)
                 {
                     Vector3Int neighbor = cell + dir;
-                    if (!visited.Contains(neighbor) && tilemap.HasTile(neighbor))
+                    if (!visited.Contains(neighbor) && pathfinder.IsWalkable(neighbor))
                     {
                         visited.Add(neighbor);
                         distance[neighbor] = dist + 1;
