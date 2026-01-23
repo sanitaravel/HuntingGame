@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
                 turnManager.enabled = true;
                 rabbit.canHighlight = true;
                 lynx.enabled = true;
+                lynx.StartTurn();
                 break;
             case GameState.End:
                 startCanvas.gameObject.SetActive(false);
